@@ -51,7 +51,6 @@ LiquidCrystal_I2C::LiquidCrystal_I2C(uint8_t lcd_Addr, uint8_t lcd_rs, uint8_t l
     _e = lcd_e;
     _cols = lcd_cols;
     _rows = lcd_rows;
-    _backlightval = LCD_NOBACKLIGHT;
 }
 
 void LiquidCrystal_I2C::oled_init()
@@ -105,8 +104,6 @@ void LiquidCrystal_I2C::begin(uint8_t cols, uint8_t lines, uint8_t dotsize)
     // before sending commands. Arduino can turn on way befer 4.5V so we'll wait 50
     delay(50);
 
-    // Now we pull both RS and R/W low to begin commands
-    expanderWrite(_backlightval); // reset expanderand turn backlight off (Bit 8 =1)
     delay(1000);
 
     // set # lines, font size, etc. Use 8-bit mode via I2C data bus
